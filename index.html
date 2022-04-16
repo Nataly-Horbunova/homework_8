@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array methods</title>
+</head>
+
+<body>
+
+    <script>
+
+        // ======= 1.MAP =======
+
+        function doMap(func, arr) {
+            let arrNew = [];
+
+            for (i = 0; i < arr.length; i++) {
+                arrNew[i] = funcMap(arr[i], arr.indexOf(arr[i]), arr);
+            }
+
+            return arrNew;
+        }
+
+        const funcMap = function (item, index, arr) {
+            return item * 2;
+        }
+
+        const array = [1, 2, 3, 4, 5];
+        const res = doMap(funcMap, array);
+        console.log(res);
+
+
+
+
+        // ======= 2.FILTER =======
+
+        function doFilter(func, arr) {
+            let arrNew = [];
+
+            for (i = 0; i < arr.length; i++) {
+                if (funcFilter(arr[i], arr.indexOf(arr[i]), arr)) {
+                    arrNew.push(arr[i]);
+                }
+            }
+
+            return arrNew;
+        }
+
+        const funcFilter = function (item, index, arr) {
+            return item % 2 === 0;
+        }
+
+        const numbers = [1, 2, 3, 4, 5];
+        const result = doFilter(funcFilter, numbers);
+        console.log(result);
+
+
+
+        // ========== 3.REDUCE ==========
+
+        const notification = [
+            {
+                date: '14/04/2022',
+                msg: 'Apple'
+            },
+            {
+                date: '15/04/2022',
+                msg: 'Plum'
+            },
+            {
+                date: '15/04/2022',
+                msg: 'Cherry'
+            },
+            {
+                date: '15/04/2022',
+                msg: 'Strawberry'
+            },
+            {
+                date: '14/04/2022',
+                msg: 'Pear'
+            },
+        ];
+
+        const sortedByDate = notification.reduce(function (accum, elem) {
+            const keyName = elem.date;
+
+            if (!accum[keyName]) {
+                accum[keyName] = [];
+            }
+
+            accum[keyName].push(elem.msg);
+
+            return accum;
+        }, {});
+
+        console.log(sortedByDate);
+
+
+    </script>
+
+</body>
+
+</html>
